@@ -38,8 +38,10 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        
+        // initNotification();
+        initPushwoosh();
         init();
+        
     }
 };
 
@@ -56,23 +58,23 @@ function init() {
 }
 
 function logMeIn() {
-    
+    var offset = new Date().getTimezoneOffset();
+    offset = offset / 60;
     $.ajax({
         type: "POST",
         url: "http://devapps2.isermobile.co.za/Services/IserService.asmx/LoginDevice",
         data:
             {
                 DeviceUUID: window.localStorage.getItem('deviceUUID'),
-                GMTTimeZone: '2',
-                PushToken: 'asdasdasdasdas',
-                DeviceType: 'windows'
+                GMTTimeZone: offset,
+                PushToken: window.localStorage.getItem('pushToken'),
+                DeviceType: device.platform
             },
         dataType: "xml",
         async: true,
         success: function (data) {
             var _data = data.getElementsByTagName("string")[0].childNodes[0].nodeValue;
-            var json = JSON.parse(_data);
-            alert(_data);
+            var json = JSON.parse(_data);            
             if (json.Result == true && json.Description=='') {
                 alert("Login, Successful !");
                 window.location.href("http://devapps2.isermobile.co.za/default.aspx");
@@ -87,12 +89,15 @@ function logMeIn() {
             }
         },
         error: function (xhr, err) {
+            //alert(JSON.stringify(xhr));
             alert("error");
         }
     });
 }
 
-function registerMe() {    
+function registerMe() {
+    var offset = new Date().getTimezoneOffset();
+    offset = offset / 60;
     $.ajax({
         type: "POST",
         url: "http://devapps2.isermobile.co.za/Services/IserService.asmx/RegisterDevice",
@@ -100,9 +105,9 @@ function registerMe() {
             {
                 PIN: $('#ContentPlaceHolder1_txtPin').val(),
                 DealerUserName: $('#ContentPlaceHolder1_txtUser').val(),
-                PushToken: 'asdsadasd',
-                GMTTimeZone: '2',
-                DeviceType: "windows"
+                PushToken: window.localStorage.getItem('pushToken'),
+                GMTTimeZone: offset,
+                DeviceType: device.platform
             },
         dataType: "xml",
         async: true,
@@ -120,7 +125,41 @@ function registerMe() {
             }
         },
         error: function (xhr, err) {
+            // alert(JSON.stringify(xhr));
             alert("error");
         }
     });
 }
+
+
+function initPushwoosh()
+{
+    var pushNotification = window.plugins.pushNotification;
+ 
+    //set push notifications handler
+    document.addEventListener('push-notification', function(event) {
+        var title = event.notification.title;
+        var userData = event.notification.userdata;
+                                 
+        if(typeof(userData) != "undefined") {
+            console.warn('user data: ' + JSON.stringify(userData));
+        }
+                                     
+        alert(title);
+    });
+ 
+    //initialize Pushwoosh with projectid: "deductive-tempo-634", appid : "06013-354B2". This will trigger all pending push notifications on start.
+    pushNotification.onDeviceReady({ projectid: "deductive-tempo-634", appid : "06013-354B2" });
+ 
+    //register for pushes
+    pushNotification.registerDevice(
+        function(status) {
+            var pushToken = status;
+            window.localStorage.setItem('pushToken', pushToken);
+        },
+        function(status) {
+            console.warn(JSON.stringify(['failed to register ', status]));
+        }
+    );
+}
+
