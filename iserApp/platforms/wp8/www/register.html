@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="utf-8"><link href="css/style.css" rel="stylesheet" media="all"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><title>
+	HTML
+</title><meta name="description"><meta name="author" content="Costa"><meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"><link rel="shortcut icon" href="http://devapps.isermobile.co.za/favicon.ico">
+    <script type ="text/javascript" src="cordova.js"></script>                  
+    <script type="text/javascript" src="js/jquery-1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>        
+    <script type="text/javascript" src="js/index.js"></script>        
+    <script type="text/javascript">
+        //window.history.forward();        
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        function onBackKeyDown() {          
+        navigator.app.exitApp();
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="register" id="form1">
+<div class="aspNetHidden">
+<input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden">
+<input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden">
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE1NjEwMDE0MTkPFCsAAmRnFgJmD2QWAgIDD2QWBgIBDw8WAh4HVmlzaWJsZWhkZAIHDw8WAh8AaGRkAgkPDxYCHwBoZGRk/ocYHjy3UCLem8VAi50sWGK72m/vIVMn8J4q49dw6+c=" type="hidden">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="js/WebResource.js" type="text/javascript"></script>
+
+
+<script src="js/ScriptResource_002.js" type="text/javascript"></script>
+<script src="js/ScriptResource.js" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAQwIw3yXSI1q3OakkAxDUm812f1SH4dveg1jKkqgL1JSQffm0jVNVrgukcgathEnyK64WotfkImeiTMxfel0J5+TrLf1pw2qeRFpCfAceE8Tv59yx50afxCUI7IDYVaGnM=" type="hidden">
+</div>
+    <header>
+        <img alt="" src="img/logo1.png">
+        <menu>
+            <a class="refresh"><i>d</i></a> 
+            
+        </menu>
+    </header>
+    <div class="alpha">
+    </div>
+    
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPlaceHolder1$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <div class="register">
+        <h1>
+            Register</h1>
+        <p>
+            Please register your device with the PIN code supplied to 
+you by ISER. Should you not have a PIN code, please contact ISER 
+support.
+        </p>
+        <p>
+            Create username</p>
+        <input name="ctl00$ContentPlaceHolder1$txtUser" maxlength="20" id="ContentPlaceHolder1_txtUser" type="text"><br>
+        <p>
+            PIN</p>
+        <input name="ctl00$ContentPlaceHolder1$txtPin" maxlength="150" id="ContentPlaceHolder1_txtPin" type="tel">
+
+        <a id="ContentPlaceHolder1_lnkSubmit" class="btn" href="javascript:registerMe();">Register</a>
+    </div>
+
+    <footer>
+        <nav>
+            <a href="http://devapps.isermobile.co.za/Contact"><i>c</i>Contact</a>
+            
+            
+        </nav>
+    </footer>
+    
+    
+    </form>
+
+
+</body></html>
