@@ -9,4 +9,10 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="PushNotification">
+        <param name="wp-package" value="PushNotification" />
+    </feature>
+    <feature name="Device">
+        <param name="wp-package" value="Device" />
+    </feature>
 </widget>
