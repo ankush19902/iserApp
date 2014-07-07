@@ -131,14 +131,9 @@ function registerMe() {
     });
 }
 
-function initNotification() {
-    document.addEventListener("deviceready", initPushwoosh, true);
 
-    //rest of the code
-}
 
 function initPushwoosh() {
-    alert(11);
     var pushNotification = window.plugins.pushNotification;
 
     //set push notifications handler
@@ -156,8 +151,7 @@ function initPushwoosh() {
     //register for pushes
     pushNotification.registerDevice(
         function (status) {
-            var pushToken = status;
-            alert(pushToken);
+            var pushToken = status;            
             window.localStorage.setItem('pushToken', pushToken);
             //init();
         },
